@@ -16,6 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from PC.views import adminU, createP, createU, readP, showP, showU
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('showPatrimonio/', showP),
+    path('readPatrimonio/', readP),
+    path('adminUsuario/', adminU),
+    path('createPatrimonio/', createP),
+    path('createUsuario/',createU),
+    path('showUsuario/', showU),
 ]
