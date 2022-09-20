@@ -32,6 +32,14 @@
   --danger: #e74a3b;
   --light: #f8f9fc;
   --dark: #5a5c69;
+  --logo: #503E26;
+  --marrom:#BFA79C;
+  --preto:#000000;
+  --rosa:#FFE4E1;
+  --laranja:#D2691E;
+  --vermelho:#800000;
+  --terra:#8B4513;
+  --verde:#3CB371;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -425,7 +433,6 @@ hr {
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-
 small,
 .small {
   font-size: 80%;
@@ -6414,6 +6421,31 @@ a.close.disabled {
   background-color: #4e73df !important;
 }
 
+.bg-logo {
+  background-color: #503E26 !important;
+}
+
+.bg-marrom {
+  background-color: #BFA79C !important;
+}
+
+.bg-rosa {
+  background-color: #FFE4E1 !important;
+}
+.bg-vermelho {
+  background-color: #800000 !important;
+}
+
+.bg-laranja {
+  background-color: #D2691E !important;
+} 
+.bg-verde {
+  background-color: #3CB371 !important;
+} 
+.bg-terra {
+  background-color: #8B4513 !important;
+} 
+
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
@@ -9595,6 +9627,22 @@ button.bg-dark:focus {
   color: #4e73df !important;
 }
 
+.text-rosa {
+  color: #FFE4E1 !important;
+}
+
+.text-verde {
+  color: #3CB371 !important;
+}
+
+.text-marrom {
+  color: #BFA79C !important;
+}
+
+.text-laranja {
+  color: #D2691E !important;
+}
+
 a.text-primary:hover, a.text-primary:focus {
   color: #224abe !important;
 }
@@ -9602,7 +9650,9 @@ a.text-primary:hover, a.text-primary:focus {
 .text-secondary {
   color: #858796 !important;
 }
-
+.text-logo{
+  color: #502E26 !important
+}
 a.text-secondary:hover, a.text-secondary:focus {
   color: #60616f !important;
 }
@@ -9644,11 +9694,19 @@ a.text-danger:hover, a.text-danger:focus {
 }
 
 a.text-light:hover, a.text-light:focus {
-  color: #c2cbe5 !important;
+  color:#503E26!important;
 }
 
 .text-dark {
   color: #5a5c69 !important;
+}
+
+.text-preto {
+  color: #000000 !important;
+}
+
+.text-vermelho {
+  color: #800000 !important;
 }
 
 a.text-dark:hover, a.text-dark:focus {
@@ -10195,7 +10253,7 @@ a:focus {
 
 .topbar .topbar-divider {
   width: 0;
-  border-right: 1px solid #e3e6f0;
+  border-right: 1px solid #000000;
   height: calc(4.375rem - 2rem);
   margin: auto 1rem;
 }

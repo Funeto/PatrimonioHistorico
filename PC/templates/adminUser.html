@@ -1,74 +1,93 @@
 {% extends 'layout.html' %}
 {% block botao %}
-<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+<a href="#" class="d-none d-sm-inline-block btn btn-sm bg-logo text-light shadow-sm"><i
   class="fas fa-download fa-sm text-white-50"></i> Novo Usuario</a>
 {% endblock %}
 {% block conteudo %}
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-      <h3 class="m-0 font-weight-bold text-primary">Usuarios Cadastrados</h3>
+      <h3 class="m-0 font-weight-bold text-logo">Usuarios Cadastrados</h3>
   </div>
   <div class="card-body">
       <div class="table-responsive">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                   <tr>
-                      <th>Código</th>
                       <th>Nome</th>
-                      <th>Adicionar Patrimonio</th>
-                      <th>Editar Patrimonio</th>
-                      <th>Remover Patrimonio</th>
+                      <th><a><i class="fas fa-plus fa-sm fa-fw mr-2"></i>Patrimonio</a></th>
+                      <th><a><i class="fas fa-edit fa-sm fa-fw mr-2"></i>Patrimonio</a></th>
+                      <th><a><i class="fas fa-trash fa-sm fa-fw mr-2"></i>Patrimonio</a></th>
+                      <th><a><i class="fas fa-ban fa-sm fa-fw mr-2"></i>Comentario</a></th>
+                      <th><a><i class="fas fa-reply fa-sm fa-fw mr-2"></i>Comentario</a></th>
                       <th>Ações</th>
                   </tr>
               </thead>
               <tbody>
                   <tr>
-                      <td>1</td>
                       <td>Usuario 1 de num sei o que</td>
                       <td class="text-center">
                         <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                            <i class="fa fa-check"></i>
+                            <i class="fa fa-check text-verde"></i>
                           </a>
                     </td>
                     <td class="text-center">
                         <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                            <i class="fa fa-check"></i>
+                            <i class="fa fa-check text-verde"></i>
                           </a>
                     </td>
                     <td class="text-center">
                         <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                            <i class="fa fa-check"></i>
+                            <i class="fa fa-check text-verde"></i>
                           </a>
                     </td>
+                    <td class="text-center">
+                      <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
+                          <i class="fa fa-check text-verde"></i>
+                        </a>
+                  </td>
+                  <td class="text-center">
+                      <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
+                          <i class="fa fa-check text-verde"></i>
+                        </a>
+                  </td>
                     <td>
-                        <a href="" class="btn-circle bg-primary text-white"><i class="fas fa-info btn-lg"></i></a>
+                        <a href="" class="btn btn-circle bg-marrom text-white"><i class="fas fa-info btn-lg"></i></a>
                         <form method="POST" style="display:inline-block">
-                          <button type="submit" class="btn btn-circle bg-warning text-white" ><i class="fa fa-trash btn-lg"></i></button>
+                          <button type="submit" class="btn btn-circle bg-laranja text-white" ><i class="fa fa-trash btn-lg"></i></button>
                         </form>
                     </td>
                   </tr> 
                   <tr>
-                    <td>2</td>
                     <td>Usuario 2 de sla dos santos</td>
                     <td class="text-center">
                         <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                            <i class="fa fa-times text-danger"></i>
+                            <i class="fa fa-times text-vermelho"></i>
                           </a>
                     </td>
                     <td class="text-center">
                         <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                            <i class="fa fa-times text-danger"></i>
+                            <i class="fa fa-times text-vermelho"></i>
                           </a>
                     </td>
                     <td class="text-center">
                         <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                            <i class="fa fa-times text-danger"></i>
+                            <i class="fa fa-times text-vermelho"></i>
                           </a>
+                    </td>
+                    <td class="text-center">
+                      <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
+                          <i class="fa fa-times text-vermelho"></i>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                      <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
+                          <i class="fa fa-times text-vermelho"></i>
+                        </a>
                     </td>
                     <td>
-                        <a href="" class="btn-circle bg-primary text-white"><i class="fas fa-info btn-lg"></i></a>
+                        <a href="" class="btn btn-circle bg-marrom text-white"><i class="fas fa-info btn-lg"></i></a>
                         <form method="POST" style="display:inline-block">
-                          <button type="submit" class="btn btn-circle bg-primary text-white" tittle="Reativar Usuario"><i class="fa fa-reply btn-lg"></i></button>
+                          <button type="submit" class="btn btn-circle bg-laranja text-white" tittle="Reativar Usuario"><i class="fa fa-reply btn-lg"></i></button>
                         </form>
                     </td>
                 </tr>                  
