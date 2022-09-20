@@ -18,3 +18,9 @@ def createU(request):
 
 def showU(request):
     return render(request,'showUser.html')
+
+def index(request):
+    return render(request,'index.html')
+
+def login(request):
+    return render(request,'login.html')
