@@ -1,5 +1,6 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 
@@ -8,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="shortcut icon" href="{% static '/img/logoicon.png' %}" type="image/x-icon">
     <title>{%block title%} {% endblock %}</title>
 
     <!-- Custom fonts for this template-->
-    {% load static %}
+    
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -32,42 +33,39 @@
         <ul class="navbar-nav bg-marrom sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon">
-                    <i class="fas fa-map-marker-alt text-logo"></i>
-                </div>
-                <div class="sidebar-brand-text mx-2 mt-3"><img src="{% static 'img/logocerta1.png'%}" style="width: 80%;"></div>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'url_index' %}">
+                <div class="sidebar-brand-text mx-2 mt-3"><img src="{% static 'img/logocerta1.png'%}" style="width: 70%;"></div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#patrimonios"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fas fa-map-marked-alt"></i>
-                    <span>Patrimonios</span>
+                    <span>Patrimônios</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="patrimonios" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
-                    <div class="py-2 collapse-inner rounded">
-                        <a class="nav-item collapse-item text-light" href="utilities-color.html">Cadastrados</a>
-                        <a class="nav-item collapse-item text-light" href="utilities-border.html">Adicionar</a>
+                    <div class="py-2 bg-marrom collapse-inner rounded">
+                        <a class="nav-item collapse-item text-light" href="{% url 'url_readP' %}">Cadastrados</a>
+                        <a class="nav-item collapse-item text-light" href="{% url 'url_createP' %}">Adicionar</a>
                     </div>
                 </div>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#usuarios"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fas fa-user"></i>
                     <span>Usuários</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="usuarios" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
-                    <div class="py-2 collapse-inner rounded">
-                        <a class="nav-item collapse-item text-light" href="utilities-color.html">Administrar</a>
-                        <a class="nav-item collapse-item text-light" href="utilities-border.html">Adicionar</a>
+                    <div class="py-2 bg-marrom collapse-inner rounded">
+                        <a class="nav-item collapse-item text-light" href="{% url 'url_adminU' %}">Administrar</a>
+                        <a class="nav-item collapse-item text-light" href="{% url 'url_createU' %}">Adicionar</a>
                     </div>
                 </div>
             </li>
@@ -90,7 +88,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow bg-rosa">
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -106,14 +104,9 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Sair
                                 </a>
                             </div>
                         </li>
@@ -134,7 +127,6 @@
                     {% block conteudo %}
 
                     {% endblock %}
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -145,7 +137,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Patrimônio Cultural 2022</span>
                     </div>
                 </div>
             </footer>

@@ -11,7 +11,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link rel="shortcut icon" href="{% static '/img/logoicon.png' %}" type="image/x-icon">
   <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -45,7 +45,7 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="{% url 'url_index' %}" class="logo d-flex align-items-center">
         <h1><i class="fas fa-map-marker-alt"></i> Patrimônio Cultural</h1>
       </a>
 
@@ -85,41 +85,16 @@
           <div class="col-12">
             <div class="swiper sliderFeaturedPosts">
               <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('{% static "img/arcodotriunfo.jpg" %}');">
-                    <div class="img-bg-inner">
-                      <h2>Patrimônio 1</h2>
-                      <p>Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição </p>
-                    </div>
-                  </a>
-                </div>
-
-                <div class="swiper-slide">
-                  <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('{% static "img/arcodotriunfo.jpg" %}');">
-                    <div class="img-bg-inner">
-                      <h2>Patrimônio 2</h2>
-                      <p>Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição </p>
-                    </div>
-                  </a>
-                </div>
-
-                <div class="swiper-slide">
-                  <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('{% static "img/arcodotriunfo.jpg" %}');">
-                    <div class="img-bg-inner">
-                      <h2>Patrimônio 3</h2>
-                      <p>Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição </p>
-                    </div>
-                  </a>
-                </div>
-
-                <div class="swiper-slide">
-                  <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('{% static "img/arcodotriunfo.jpg" %}');">
-                    <div class="img-bg-inner">
-                      <h2>Patrimônio 4</h2>
-                      <p>Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição Descrição </p>
-                    </div>
-                  </a>
-                </div>
+                {% for i in patrimonios %}
+                  <div class="swiper-slide">
+                    <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url({{ i.foto.url }})">
+                      <div class="img-bg-inner">
+                        <h2>{{ i.nome }}</h2>
+                        <p>{{ i.descricao }}</p>
+                      </div>
+                    </a>
+                  </div>
+                {% endfor %}
               </div>
               <div class="custom-swiper-button-next">
                 <span class="bi-chevron-right"></span>
@@ -173,7 +148,7 @@
         <div class="row justify-content-between">
           <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
             <div class="copyright">
-              © Copyright <strong><span>Patrimônio Cultural</span></strong>. All Rights Reserved
+              © Copyright <strong><span>Patrimônio Cultural</span></strong>. Todos os Direitos Reservados
             </div>
 
             <div class="credits">
@@ -181,7 +156,7 @@
               <!-- You can delete the links only if you purchased the pro version. -->
               <!-- Licensing information: https://bootstrapmade.com/license/ -->
               <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-              Designed by <a href="https://bootstrapmade.com/">Ari Oliveira</a>
+              Designado por <a href="http://www.arioliveira.com/">Ari Oliveira</a>
             </div>
 
           </div>

@@ -1,48 +1,37 @@
 {% extends 'layout.html' %}
 {% block botao %}
-<a href="#" class="d-none d-sm-inline-block btn btn-sm bg-logo text-light shadow-sm"><i
-  class="fas fa-download fa-sm text-white-50"></i> Novo Patrimonio</a>
+<a href="{% url 'url_createP' %}" class="d-none d-sm-inline-block btn btn-sm bg-logo text-light shadow-sm"><i
+  class="fas fa-download fa-sm text-white-50"></i> Novo Patrimônio</a>
 {% endblock %}
 {% block conteudo %}
 <div class="card shadow mb-4">
-  <div class="card-header py-3">
-      <h3 class="m-0 font-weight-bold text-logo">Patrimonios Cadastrados</h3>
+  <div class="card-header py-3  bg-rosa">
+      <h3 class="m-0 font-weight-bold text-logo">Patrimônios Cadastrados</h3>
   </div>
   <div class="card-body">
       <div class="table-responsive">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                   <tr>
-                      <th>Código</th>
-                      <th>Nome</th>
+                      <th class="col-2">Foto</th>
+                      <th class="col-2">Nome</th>
                       <th>Descrição</th>
-                      <th>Ações</th>
-                      
+                      <th class="col-2">Ações</th>
                   </tr>
               </thead>
               <tbody>
+                {% for i in patrimonios %}
                   <tr>
-                      <td>skxosk</td>
-                      <td>sla</td>
-                      <td>skmmx</td>
+                      <td><a href="{% url 'url_showP' i.codigo %}"><img src="{{ i.foto.url }}" class="img-fluid img-thumbnail"></a></td>
+                      <td>{{ i.nome }}</td>
+                      <td>{{ i.descricao }}</td>
                       <td>
-                          <a href="" class="btn btn-circle bg-marrom text-white"><i class="fas fa-info btn-lg"></i></a>
-                          <form method="POST" style="display:inline-block">
-                            <button type="submit" class="btn btn-circle bg-laranja text-white" ><i class="fa fa-trash btn-lg"></i></button>
-                          </form>
+                        <a href="{% url 'url_showP' i.codigo %}"><button class="btn btn-circle bg-marrom text-white"><i class="fas fa-info btn-lg"></i></button></a>
+                        <a href="{% url 'url_updateP' i.codigo %}"><button class="btn btn-circle bg-logo text-white"><i class="fas fa-edit btn-lg"></i></button></a>
+                        <a href="{% url 'url_delP' i.codigo %}"><button class="btn btn-circle bg-laranja text-white"><i class="fas fa-trash btn-lg"></i></button></a>
                       </td>
-                  </tr> 
-                  <tr>
-                    <td>skxosk</td>
-                    <td>sla</td>
-                    <td>skmmx</td>
-                    <td>
-                        <a href="" class="btn btn-circle bg-marrom text-white"><i class="fas fa-info btn-lg"></i></a>
-                        <form method="POST" style="display:inline-block">
-                          <button type="submit" class="btn btn-circle bg-laranja text-white" tittle="Reativar Usuario"><i class="fa fa-reply btn-lg"></i></button>
-                        </form>
-                    </td>
-                </tr>                  
+                  </tr>
+                {% endfor %}
               </tbody>
           </table>
       </div>

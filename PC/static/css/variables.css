@@ -21,8 +21,8 @@
 :root {
 
   /* Fonts */
-  --font-default: 'EB Garamond', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-primary: 'EB Garamond', serif; /*'Playfair Display', serif;*/
+  --font-default: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-primary: 'Nunito', sans-serif; /*'Playfair Display', serif;*/
   --font-secondary: 'Inter', sans-serif;
 
   /* Colors */

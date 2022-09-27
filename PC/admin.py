@@ -1,3 +1,6 @@
 from django.contrib import admin
+from PC.models import *
 
-# Register your models here.
+admin.site.register(Usuario)
+admin.site.register(Patrimonio)
+admin.site.register(Comentario)
