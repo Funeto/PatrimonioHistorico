@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% block conteudo %}
+{% load crispy_forms_tags %}
 <div class="card o-hidden border-0 shadow-lg my-5">
     <div class="card-body p-0">
         <section class="py-0">
@@ -36,7 +37,7 @@
     </div>
   </div>
 
-  <h2>Deixe seu comentario:</h2>
+  <h2>Deixe seu comentário:</h2>
 
 <div class="card o-hidden border-0 shadow-lg my-5">
   <div class="card-body p-0">
@@ -45,12 +46,11 @@
           <div class=" m-4">
             <div class="media g-mb-30 media-comment">
                 <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
-                  <form  class="">
-                    <input type="text" class="col-sm-9 m-2 form-control" value="Nick">
-                    <input type="text" class="col-sm-9 m-2 form-control" value="Email">
-                    <input type="text" class="col-sm-9 m-2 form-control" value="comentario">
-                    <div class="text-right mr-6 mb-3">
-                      <input type="submit" class="btn bg-verde text-preto btn-user col-sm-2 ml-auto" value="Enviar">
+                  <form  class="user" method="POST">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <div class="text-center">
+                      <input type="submit" class="btn bg-marrom text-logo col-sm-5 -md-auto" value="Enviar">
                     </div>
                   </form>
                 </div>
@@ -60,74 +60,31 @@
       </div>
   </div>
 </div>
-
-<div class="card o-hidden border-0 shadow-lg my-5">
-  <div class="card-body p-0">
-      <div class=" m-4">
-          <div class="media g-mb-30 media-comment">
-              <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
-                  <form  class="justify-content-center">
-                    <input type="text" class="col-8 m-2 form-control" value="Nick">
-                    <input type="text" class="col-8 m-2 form-control" value="Email">
-                    <input type="text" class="col-8 m-2 form-control" value="comentario vsf essa merda vai mudar mesmo">
-                    <div class="text-right mr-5 mb-3">
-                        <input type="submit" class="btn bg-verde text-preto btn-user col-sm-2 -ml-auto" value="Enviar">
+<h2>Comentários ({{ qtdComent.decla_count }})</h2>
+{% for i in comentarios %}
+  <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+          <div class=" m-4">
+              <div class="media g-mb-30 media-comment">
+                  <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
+                    <div class="g-mb-15">
+                      <h5 class="h5 g-color-gray-dark-v1 mb-0">{{ i.nome }}</h5>
+                      <span class="g-color-gray-dark-v4 g-font-size-12"><small>{{ i.data }}</small></span>
                     </div>
-                  </form>
+              
+                    <p>{{ i.comentario }}</p>
+              
+                    <ul class="list-inline d-sm-flex my-0">
+                      <li class="list-inline-item ml-auto">
+                        <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="{% url 'url_delC' patrimonio.codigo i.codigo %}">
+                          <i class="fa fa-trash text-laranja g-pos-rel g-top-1 g-mr-3"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
               </div>
           </div>
       </div>
   </div>
-</div>
-<h2>Comentarios (1)</h2>
-<div class="card o-hidden border-0 shadow-lg my-5">
-    <div class="card-body p-0">
-        <div class=" m-4">
-            <div class="media g-mb-30 media-comment">
-                <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
-                  <div class="g-mb-15">
-                    <h5 class="h5 g-color-gray-dark-v1 mb-0">John Doe</h5>
-                    <span class="g-color-gray-dark-v4 g-font-size-12">18 de Setembro de 2022</span>
-                  </div>
-            
-                  <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue
-                    felis in faucibus ras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
-            
-                  <ul class="list-inline d-sm-flex my-0">
-                    <li class="list-inline-item ml-auto">
-                      <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                        <i class="fa fa-reply text-laranja g-pos-rel g-top-1 g-mr-3"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="card o-hidden border-0 shadow-lg my-5">
-    <div class="card-body p-0">
-        <div class=" m-4">
-            <div class="media g-mb-30 media-comment">
-                <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
-                  <div class="g-mb-15">
-                    <h5 class="h5 g-color-gray-dark-v1 mb-0">John Doe</h5>
-                    <span class="g-color-gray-dark-v4 g-font-size-12">18 de Setembro de 2022</span>
-                  </div>
-            
-                  <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue
-                    felis in faucibus ras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
-            
-                  <ul class="list-inline d-sm-flex my-0">
-                    <li class="list-inline-item ml-auto">
-                      <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                        <i class="fa fa-ban text-vermelho g-pos-rel g-top-1 g-mr-3"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{% endfor %}
 {% endblock %}

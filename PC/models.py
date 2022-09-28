@@ -33,8 +33,9 @@ class Patrimonio(models.Model):
 class Comentario(models.Model):
     codigo = models.AutoField(primary_key=True)
     patrimonio = models.ForeignKey(Patrimonio, on_delete=models.CASCADE)
-    nome = models.CharField(max_length=32)
-    comentario = models.CharField(max_length=32)
+    nome = models.CharField(max_length=100)
+    comentario = models.TextField()
     data = models.DateTimeField(default=datetime.now(), blank=True)
 
-    
+    def __str__(self):
+        return str(str(self.nome)+" - "+str(self.data))

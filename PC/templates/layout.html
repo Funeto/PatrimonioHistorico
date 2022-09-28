@@ -22,6 +22,11 @@
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.css' %}" rel="stylesheet">
 
+    <style>
+        .asteriskField {
+            display: none;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -34,6 +39,9 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'url_index' %}">
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-map-marker-alt text-logo"></i>
+                </div>
                 <div class="sidebar-brand-text mx-2 mt-3"><img src="{% static 'img/logocerta1.png'%}" style="width: 70%;"></div>
             </a>
 

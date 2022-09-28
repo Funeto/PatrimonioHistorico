@@ -13,6 +13,7 @@ urlpatterns = [
     path('readPatrimonio/', readP, name='url_readP'),
     path('deletePatrimonio/<int:id>', delP, name='url_delP'),
     path('updatePatrimonio/<int:id>', updateP, name='url_updateP'),
+    path('deleteComentario/<int:idp>/<int:idc>', delC, name='url_delC'),
     path('adminUsuario/', adminU, name='url_adminU'),
     path('createUsuario/',createU, name='url_createU'),
     path('showUsuario/', showU, name='url_showU'),
