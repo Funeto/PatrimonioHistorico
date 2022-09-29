@@ -51,7 +51,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="about.html">Patrimônios em Caicó</a></li>
+          <li><a href="{% url 'url_readP' %}">Patrimônios em Caicó</a></li>
           <li><a href="{% url 'url_login' %}">Login</a></li>
         </ul>
       </nav><!-- .navbar -->
@@ -87,7 +87,7 @@
               <div class="swiper-wrapper">
                 {% for i in patrimonios %}
                   <div class="swiper-slide">
-                    <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url({{ i.foto.url }})">
+                    <a href="{% url 'url_showP' i.codigo %}" class="img-bg d-flex align-items-end" style="background-image: url({{ i.foto.url }})">
                       <div class="img-bg-inner">
                         <h2>{{ i.nome }}</h2>
                         <p>{{ i.descricao }}</p>

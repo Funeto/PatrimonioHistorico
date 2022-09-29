@@ -56,7 +56,7 @@ def createP(request):
                 bairro = form.cleaned_data.get("bairro"),
                 logradouro = form.cleaned_data.get("logradouro"),
                 numero = form.cleaned_data.get("numero"),
-                anoinauguracao = form.cleaned_data.get("anoinauguracao"),
+                datainauguracao = form.cleaned_data.get("datainauguracao"),
                 funcionamento = form.cleaned_data.get("funcionamento"),
                 curiosidades = form.cleaned_data.get("curiosidades"),
             )
@@ -74,7 +74,7 @@ def delP(request, id):
 
 def updateP(request, id):
     patr = Patrimonio.objects.get(pk=id)
-    form = PatrimonioModelForm(request.POST or None, instance=patr)
+    form = PatrimonioModelForm(request.POST or None, request.FILES or None, instance=patr)
     if form.is_valid():
         form.save()
         return redirect("/readPatrimonio")

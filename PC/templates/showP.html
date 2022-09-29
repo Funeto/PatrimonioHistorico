@@ -20,10 +20,10 @@
                         </div>
                         <div class="fs-0 mb-3">
                             <span class="text-decoration-line-through h4"> Inauguração:</span>
-                            <span class="lead display-5">{{ patrimonio.anoinauguracao }}</span>
+                            <span class="lead display-5">{{ patrimonio.datainauguracao }}</span>
                         </div>
                         <div class="fs-0 mb-3">
-                            <span class="h4 text-gray-550"> Curiosidades</span>
+                            <span class="h4 text-gray-550"> Curiosidades:</span>
                             <p class="lead display-5">{{ patrimonio.curiosidades }}</p>
                         </div>
                     </div>
@@ -49,8 +49,8 @@
                   <form  class="user" method="POST">
                     {% csrf_token %}
                     {{form|crispy}}
-                    <div class="text-center">
-                      <input type="submit" class="btn bg-marrom text-logo col-sm-5 -md-auto" value="Enviar">
+                    <div class="text-right">
+                      <input type="submit" class="btn bg-marrom text-logo col-sm-4 -md-auto" value="Enviar">
                     </div>
                   </form>
                 </div>
