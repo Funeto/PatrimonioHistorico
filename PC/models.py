@@ -1,16 +1,17 @@
 from datetime import datetime
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-class Usuario(models.Model):
-    codigo = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=32)
-    email = models.EmailField()
-    senha = models.CharField(max_length=32)
+class Usuario(AbstractUser):
     cidade = models.CharField(max_length=100)
-    tipo = models.BooleanField()
+    choices_tipo = (
+        ('S', 'Auxiliar'),
+        ('A', 'Administrador')
+        )
+    tipo = models.CharField(max_length=1, choices=choices_tipo)
     
     def __str__(self):
-        return (self.nome)
+        return (self.username)
 
 class Patrimonio(models.Model):
     codigo = models.AutoField(primary_key=True)

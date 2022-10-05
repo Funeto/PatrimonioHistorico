@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'PC',   
+    'PC',
+    'rolepermissions',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -117,3 +118,11 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Config auth
+
+AUTH_USER_MODEL = 'PC.Usuario'
+
+# Role Permissions
+
+ROLEPERMISSIONS_MODULE = 'PH.roles'

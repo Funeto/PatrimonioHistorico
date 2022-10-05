@@ -9,9 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Login </title>
+    <title>PC | Login </title>
     {% load static %}
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="shortcut icon" href="{% static '/img/logoicon.png' %}" type="image/x-icon">
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
     <link
@@ -41,13 +42,13 @@
                                     <div class="text-center mb-4">
                                         <button type="submit" class="btn btn-lg btn-circle bg-laranja text-white" tittle="Reativar Usuario"><i class="fa fa-map-marker-alt text-logo btn-lg"></i></button>
                                     </div> 
-                                    <form class="user" method="POST">
+                                    <form class="user" method="POST"> {% csrf_token %}
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Digite seu email">
+                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Digite seu email" name="email">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Digite sua senha">
+                                                id="exampleInputPassword" placeholder="Digite sua senha" name="senha">
                                         </div>
                                         <button class="btn btn-user btn-block bg-laranja text-preto">
                                             Entrar
