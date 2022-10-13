@@ -1,4 +1,4 @@
-from rolepermissions.decorators import has_permission_decorator
+from rolepermissions.decorators import has_permission_decorator, has_role_decorator
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import auth
@@ -50,11 +50,12 @@ def readP(request):
 @has_permission_decorator('cadastrar_patrimonio')
 def createP(request):
     pacote = {}
+    current_user = request.user
     if request.method == "POST":
         form = PatrimonioForm(request.POST, request.FILES)
         if form.is_valid():
             obj = Patrimonio.objects.create(
-                usuario = Usuario(id = 1),
+                usuario = Usuario(id = current_user.id),
                 nome = form.cleaned_data.get("nome"),
                 foto = form.cleaned_data.get("foto"),
                 descricao = form.cleaned_data.get("descricao"),
@@ -89,11 +90,11 @@ def updateP(request, id):
     pacote = {"form": form}
     return render(request, "createP.html", pacote)
 
-@has_permission_decorator('conceder_permissao')
+@has_permission_decorator('conceder_permissoes')
 def adminU(request):
     return render(request, "adminUser.html")
 
-@has_permission_decorator('cadastrar_usuario')
+@has_permission_decorator('cadastrar_usuarios_aux')
 def createU(request):
     if request.method == "POST":
         first_name = request.POST.get('username')
@@ -107,7 +108,7 @@ def createU(request):
             return redirect("/createUsuario")
         user = Usuario.objects.create_user(username=email, email=email, password=senha, first_name=first_name, cidade="Caicó", tipo='S')
         user.save()
-        return HttpResponse('Conta criada')
+        return redirect("/adminUsuario")
 
     return render(request,'createUser.html')
 
@@ -139,3 +140,6 @@ def index(request):
     patr = Patrimonio.objects.all()
     pacote = {"patrimonios": patr}
     return render(request, "index.html", pacote)
+
+def handler404(request, exception):
+    return redirect("/")

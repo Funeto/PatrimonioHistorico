@@ -11,3 +11,9 @@ def define_permissoes(sender, instance, created, **kwargs):
             assign_role(instance, 'auxiliar')
         elif instance.tipo == "A":
             assign_role(instance, 'administrador')
+        else:
+            assign_role(instance, 'administrador')
+            obj = Usuario.objects.get(id = instance.id)
+            obj.tipo = "A"
+            obj.save()
+            

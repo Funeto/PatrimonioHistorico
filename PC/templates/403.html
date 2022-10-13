@@ -1,0 +1,27 @@
+{% extends request.user.is_authenticated|yesno:'layouts/layout.html,layouts/index.html' %}
+{%block title%} PC | Novo Patrimônio {% endblock %}
+{% block conteudo %}
+{% load crispy_forms_tags %}
+<head>
+    <style>
+        .footer{
+            display: none;
+        }
+    </style>
+</head>
+<div class="container-fluid {%if user.is_authenticated == False %} pt-5 {% endif %}">
+
+    <!-- 404 Error Text -->
+    <div class="text-center">
+        <div class="error mx-auto" data-text="403">403</div>
+        <p class="lead text-gray-800 mb-5">Página indisponível</p>
+        <p class="text-gray-500 mb-0">Parece que você achou um glitch na matrix ...</p>
+        <a href="{% url 'url_index' %}">&larr;Voltar para tela inicial</a>
+    </div>
+    <script>
+        setTimeout(function(){
+           window.location.href = '{% url 'url_index' %}';
+        }, 5000);
+     </script>
+</div>
+{% endblock %}

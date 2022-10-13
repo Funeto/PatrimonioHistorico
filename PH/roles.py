@@ -6,6 +6,10 @@ class Administrador(AbstractUserRole):
         'cadastrar_usuarios_aux': True,
         'conceder_permissoes': True,
         'remover_usuarios_aux': True,
+        'cadastrar_patrimonio': True,
+        'editar_patrimonio': True,
+        'remover_patrimonio': True,
+        'remover_comentario': True,
     }
 
 class Auxiliar(AbstractUserRole):
