@@ -1,4 +1,5 @@
 from rolepermissions.decorators import has_permission_decorator, has_role_decorator
+from rolepermissions.permissions import revoke_permission, grant_permission
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import auth
@@ -92,7 +93,49 @@ def updateP(request, id):
 
 @has_permission_decorator('conceder_permissoes')
 def adminU(request):
-    return render(request, "adminUser.html")
+    users = Usuario.objects.all()
+    pacote = {"users": users}  
+    return render(request, "adminUser.html", pacote)
+
+def revogarCP(request,id):
+    user = Usuario.objects.get(pk=id)
+    revoke_permission(user, 'cadastrar_patrimonio')
+    return redirect("/adminUsuario")
+
+def revogarEP(request,id):
+    user = Usuario.objects.get(pk=id)
+    revoke_permission(user, 'editar_patrimonio')
+    return redirect("/adminUsuario")
+
+def revogarDP(request,id):
+    user = Usuario.objects.get(pk=id)
+    revoke_permission(user, 'remover_patrimonio')
+    return redirect("/adminUsuario")
+
+def revogarDC(request,id):
+    user = Usuario.objects.get(pk=id)
+    revoke_permission(user, 'remover_comentario')
+    return redirect("/adminUsuario")
+
+def concederCP(request,id):
+    user = Usuario.objects.get(pk=id)
+    grant_permission(user, 'cadastrar_patrimonio')
+    return redirect("/adminUsuario")
+
+def concederEP(request,id):
+    user = Usuario.objects.get(pk=id)
+    grant_permission(user, 'editar_patrimonio')
+    return redirect("/adminUsuario")
+
+def concederDP(request,id):
+    user = Usuario.objects.get(pk=id)
+    grant_permission(user, 'remover_patrimonio')
+    return redirect("/adminUsuario")
+
+def concederDC(request,id):
+    user = Usuario.objects.get(pk=id)
+    grant_permission(user, 'remover_comentario')
+    return redirect("/adminUsuario")
 
 @has_permission_decorator('cadastrar_usuarios_aux')
 def createU(request):

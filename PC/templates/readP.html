@@ -1,8 +1,11 @@
 {% extends request.user.is_authenticated|yesno:'layouts/layout.html,layouts/index.html' %}
 {%block title%} PC | Patrimônios {% endblock %}
   {% block botao %}
-  <a href="{% url 'url_createP' %}" class="d-none d-sm-inline-block btn btn-sm bg-logo text-light shadow-sm"><i
-    class="fas fa-plus fa-sm text-white-50"></i>&nbsp;&nbsp;Novo Patrimônio</a>
+  {% load permission_tags %}
+    {% if user|can:'cadastrar_patrimonio' %}
+      <a href="{% url 'url_createP' %}" class="d-none d-sm-inline-block btn btn-sm bg-logo text-light shadow-sm"><i
+        class="fas fa-plus fa-sm text-white-50"></i>&nbsp;&nbsp;Novo Patrimônio</a>
+    {% endif%}
   {% endblock %}
 
 {% block conteudo %}
@@ -38,8 +41,12 @@
                               {%if user.is_authenticated %}
                               <td>
                                 <a href="{% url 'url_showP' i.codigo %}"><button class="btn btn-circle bg-marrom text-white"><i class="fas fa-info btn-lg"></i></button></a>
+                                {% if user|can:'editar_patrimonio' %}
                                 <a href="{% url 'url_updateP' i.codigo %}"><button class="btn btn-circle bg-logo text-white"><i class="fas fa-pen btn-lg"></i></button></a>
+                                {% endif %}
+                                {% if user|can:'remover_patrimonio' %}
                                 <a href="{% url 'url_delP' i.codigo %}"><button class="btn btn-circle bg-laranja text-white"><i class="fas fa-trash btn-lg"></i></button></a>
+                                {% endif %}
                               </td>
                               {% else %}
                               <td>{{ i.funcionamento }}</td>

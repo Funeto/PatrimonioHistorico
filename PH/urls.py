@@ -22,7 +22,15 @@ urlpatterns = [
     path('adminUsuario/', adminU, name='url_adminU'),
     path('createUsuario/',createU, name='url_createU'),
     path('showUsuario/', showU, name='url_showU'),
-    
+
+    path('revogarCP/<int:id>', revogarCP, name='url_revCP'),
+    path('revogarEP/<int:id>', revogarEP, name='url_revEP'),
+    path('revogarDP/<int:id>', revogarDP, name='url_revDP'),
+    path('revogarDC/<int:id>', revogarDC, name='url_revDC'),
+    path('concederCP/<int:id>', concederCP, name='url_conCP'),
+    path('concederEP/<int:id>', concederEP, name='url_conEP'),
+    path('concederDP/<int:id>', concederDP, name='url_conDP'),
+    path('concederDC/<int:id>', concederDC, name='url_conDC'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

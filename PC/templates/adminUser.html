@@ -24,27 +24,53 @@
                   </tr>
               </thead>
               <tbody>
+                {% for i in users %}
                   <tr>
-                      <td>Usuario 1 de num sei o que</td>
+                      <td>{{ i.first_name }}</td>
                       <td class="text-center">
-                        <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                            <i class="fa fa-check text-verde"></i>
-                          </a>
-                    </td>
-                    <td class="text-center">
-                        <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                            <i class="fa fa-check text-verde"></i>
-                          </a>
-                    </td>
-                    <td class="text-center">
-                        <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                            <i class="fa fa-check text-verde"></i>
-                          </a>
-                    </td>
-                    <td class="text-center">
-                      <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
+                        {% load permission_tags %}
+                        {% if i|can:'cadastrar_patrimonio' %}
+                        <a class="u-link-v5 g-color-gray-dark-v4" href="{% url 'url_revCP' i.id %}">
                           <i class="fa fa-check text-verde"></i>
                         </a>
+                        {% else %}
+                        <a class="u-link-v5 g-color-gray-dark-v4" href="{% url 'url_conCP' i.id %}">
+                          <i class="fa fa-times text-vermelho"></i>
+                        </a>
+                        {% endif %}
+                    </td>
+                    <td class="text-center">
+                      {% if i|can:'editar_patrimonio' %}
+                      <a class="u-link-v5 g-color-gray-dark-v4" href="{% url 'url_revEP' i.id %}">
+                        <i class="fa fa-check text-verde"></i>
+                      </a>
+                      {% else %}
+                      <a class="u-link-v5 g-color-gray-dark-v4" href="{% url 'url_conEP' i.id %}">
+                        <i class="fa fa-times text-vermelho"></i>
+                      </a>
+                      {% endif %}
+                    </td>
+                    <td class="text-center">
+                      {% if i|can:'remover_patrimonio' %}
+                      <a class="u-link-v5 g-color-gray-dark-v4" href="{% url 'url_revDP' i.id %}">
+                        <i class="fa fa-check text-verde"></i>
+                      </a>
+                      {% else %}
+                      <a class="u-link-v5 g-color-gray-dark-v4" href="{% url 'url_conDP' i.id %}">
+                        <i class="fa fa-times text-vermelho"></i>
+                      </a>
+                      {% endif %}
+                    </td>
+                    <td class="text-center">
+                      {% if i|can:'remover_comentario' %}
+                      <a class="u-link-v5 g-color-gray-dark-v4" href="{% url 'url_revDC' i.id %}">
+                        <i class="fa fa-check text-verde"></i>
+                      </a>
+                      {% else %}
+                      <a class="u-link-v5 g-color-gray-dark-v4" href="{% url 'url_conDC' i.id %}">
+                        <i class="fa fa-times text-vermelho"></i>
+                      </a>
+                      {% endif %}
                   </td>
                   <td class="text-center">
                       <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
@@ -58,40 +84,7 @@
                         </form>
                     </td>
                   </tr> 
-                  <tr>
-                    <td>Usuario 2 de sla dos santos</td>
-                    <td class="text-center">
-                        <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                            <i class="fa fa-times text-vermelho"></i>
-                          </a>
-                    </td>
-                    <td class="text-center">
-                        <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                            <i class="fa fa-times text-vermelho"></i>
-                          </a>
-                    </td>
-                    <td class="text-center">
-                        <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                            <i class="fa fa-times text-vermelho"></i>
-                          </a>
-                    </td>
-                    <td class="text-center">
-                      <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                          <i class="fa fa-times text-vermelho"></i>
-                        </a>
-                    </td>
-                    <td class="text-center">
-                      <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                          <i class="fa fa-times text-vermelho"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="" class="btn btn-circle bg-marrom text-white"><i class="fas fa-info btn-lg"></i></a>
-                        <form method="POST" style="display:inline-block">
-                          <button type="submit" class="btn btn-circle bg-laranja text-white" tittle="Reativar Usuario"><i class="fa fa-reply btn-lg"></i></button>
-                        </form>
-                    </td>
-                </tr>                  
+                  {% endfor %}                  
               </tbody>
           </table>
       </div>
