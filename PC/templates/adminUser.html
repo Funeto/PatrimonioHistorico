@@ -1,7 +1,7 @@
 {% extends 'layouts/layout.html' %}
 {%block title%} PC | Administrar usuário {% endblock %}
 {% block botao %}
-<a href="#" class="d-none d-sm-inline-block btn btn-sm bg-logo text-light shadow-sm"><i
+<a href="{% url 'url_createU' %}" class="d-none d-sm-inline-block btn btn-sm bg-logo text-light shadow-sm"><i
   class="fas fa-plus fa-sm text-white-50"></i> Novo Usuario</a>
 {% endblock %}
 {% block conteudo %}
@@ -19,7 +19,6 @@
                       <th><a><i class="fas fa-edit fa-sm fa-fw mr-2"></i>Patrimonio</a></th>
                       <th><a><i class="fas fa-trash fa-sm fa-fw mr-2"></i>Patrimonio</a></th>
                       <th><a><i class="fas fa-ban fa-sm fa-fw mr-2"></i>Comentario</a></th>
-                      <th><a><i class="fas fa-reply fa-sm fa-fw mr-2"></i>Comentario</a></th>
                       <th>Ações</th>
                   </tr>
               </thead>
@@ -72,16 +71,9 @@
                       </a>
                       {% endif %}
                   </td>
-                  <td class="text-center">
-                      <a class="u-link-v5 g-color-gray-dark-v4" href="#!">
-                          <i class="fa fa-check text-verde"></i>
-                        </a>
-                  </td>
                     <td>
-                        <a href="" class="btn btn-circle bg-marrom text-white"><i class="fas fa-info btn-lg"></i></a>
-                        <form method="POST" style="display:inline-block">
-                          <button type="submit" class="btn btn-circle bg-laranja text-white" ><i class="fa fa-trash btn-lg"></i></button>
-                        </form>
+                        <a href="{% url 'url_showU' i.id %}" class="btn btn-circle bg-marrom text-white"><i class="fas fa-info btn-lg"></i></a>
+                        <a href="{% url 'url_delU' i.id %}" class="btn btn-circle bg-laranja text-white" ><i class="fa fa-trash btn-lg"></i></a>
                     </td>
                   </tr> 
                   {% endfor %}                  

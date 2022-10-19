@@ -155,8 +155,15 @@ def createU(request):
 
     return render(request,'createUser.html')
 
-def showU(request):
-    return render(request,'showUser.html')
+def showU(request,id):
+    usuario = Usuario.objects.get(pk=id)
+    pacote = {"usuario":usuario}
+    return render(request,'showUser.html', pacote)
+
+def delU(request, id):
+    usuario = Usuario.objects.get(pk=id)
+    usuario.delete()
+    return redirect("/adminUsuario")
 
 def login(request):
     if request.method == "GET":

@@ -1,4 +1,5 @@
 {% extends 'layouts/layout.html' %}
+{%block title%} PC | {{ usuario.get_full_name }} {% endblock %}
 {% block conteudo %}
 <div class="card o-hidden border-0 shadow-lg my-3">
     <div class="card-body p-0">
@@ -13,19 +14,15 @@
                             <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
                                 <div class=" fs-0 mb-3 display-5">
                                     <span class="text-decoration-line-through h4"> Nome: </span>
-                                    <span class="lead display-5">Cicrano da Silva Beutrano</span>
+                                    <span class="lead display-5">{{ usuario.get_full_name }}</span>
                                 </div>
                                 <div class=" fs-0 mb-3 display-5">
                                     <span class="text-decoration-line-through h4"> E-mail: </span>
-                                    <span class="lead display-5">Cicrano@gmail.com</span>
+                                    <span class="lead display-5">{{ usuario.email }}</span>
                                 </div>
                                 <div class=" fs-0 mb-3 display-5">
                                     <span class="text-decoration-line-through h4"> Cadastrado: </span>
-                                    <span class="lead display-5 ">20 de Setembro de 2022</span>
-                                </div>
-                                <div class=" fs-0 mb-3 display-5">
-                                    <span class="text-decoration-line-through h4"> Situação: </span>
-                                    <span class="lead display-5 text-verde h4">Ativo</span>
+                                    <span class="lead display-5 ">{{ usuario.date_joined }}</span>
                                 </div>
                             </div>
                         </div>

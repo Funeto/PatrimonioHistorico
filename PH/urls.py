@@ -21,7 +21,8 @@ urlpatterns = [
 
     path('adminUsuario/', adminU, name='url_adminU'),
     path('createUsuario/',createU, name='url_createU'),
-    path('showUsuario/', showU, name='url_showU'),
+    path('deleteUsuario/<int:id>', delU, name='url_delU'),
+    path('showUsuario/<int:id>', showU, name='url_showU'),
 
     path('revogarCP/<int:id>', revogarCP, name='url_revCP'),
     path('revogarEP/<int:id>', revogarEP, name='url_revEP'),
