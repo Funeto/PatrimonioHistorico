@@ -146,7 +146,9 @@ def createU(request):
         senha_confirma = request.POST.get('senha_confirma')
         user = Usuario.objects.filter(username=email)
         if user.exists():
-            return redirect("/createUsuario")
+            texto = "Email ou senha inválidos"
+            mensagem = {"texto":texto}
+            return render(request, "createUser.html", mensagem)
         elif senha != senha_confirma:
             return redirect("/createUsuario")
         user = Usuario.objects.create_user(username=email, email=email, password=senha, first_name=first_name, cidade="Caicó", tipo='S')
@@ -177,7 +179,9 @@ def login(request):
         user = auth.authenticate(username=login, password=senha)
 
         if not user:
-            return HttpResponse('Usuário Inválido')
+            texto = "Email ou senha inválidos"
+            mensagem = {"texto":texto}
+            return render(request, 'login.html', mensagem)
 
         auth.login(request, user)
         return redirect("/readPatrimonio")

@@ -1,7 +1,7 @@
 {% extends 'layouts/layout.html' %}
 {%block title%} PC | Novo Usuário {% endblock %}
 {% block conteudo %}
-<h2 class="h2 mb-0 text-marrom">Novo Usuário (auxiliar)</h2>
+<h2 class="h2 mb-0 text-marrom">Novo usuário auxiliar</h2>
 <div class="card o-hidden border-0 shadow-lg my-3">
     <div class="card-body p-0">
         <div class="row justify-content-center">
@@ -31,6 +31,7 @@
                                 <input type="password" class="form-control " placeholder="Confirmar senha" name="senha_confirma">
                             </div>
                         </div>
+                        <p class="text-vermelho">{{ texto }}</p>
                         <hr>
                         <div class="text-center">
                             <input type="submit" class="btn bg-marrom text-logo col-sm-5 -md-auto" value="Salvar">
