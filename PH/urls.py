@@ -3,6 +3,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 from PC.views import *
+from django.contrib.auth import views as auth_views 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,6 +24,7 @@ urlpatterns = [
     path('createUsuario/',createU, name='url_createU'),
     path('deleteUsuario/<int:id>', delU, name='url_delU'),
     path('showUsuario/<int:id>', showU, name='url_showU'),
+    path('redefinirSenha/', Redefinir.as_view(template_name='redefinir.html'), name='url_redefinir'),
 
     path('revogarCP/<int:id>', revogarCP, name='url_revCP'),
     path('revogarEP/<int:id>', revogarEP, name='url_revEP'),

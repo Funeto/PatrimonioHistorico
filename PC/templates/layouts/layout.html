@@ -22,6 +22,9 @@
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.css' %}" rel="stylesheet">
 
+    <!-- Custom styles for this page -->
+    <!-- <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet"> -->
+
     <style>
         .asteriskField {
             display: none;
@@ -102,6 +105,11 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow bg-rosa">
 
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn text-preto d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -111,15 +119,14 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-preto small"><i class="fas fa-user"></i>&nbsp;&nbsp;{{ user.get_full_name }}</span>
+                                <i class="fas fa-user text-preto small"></i>&nbsp;&nbsp;
+                                <span class="mr-2 d-none d-lg-inline text-preto small">{{ user.get_full_name }}</span>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Sair
-                                </a>
+                                <a class="dropdown-item" href="{% url 'url_redefinir' %}"><i class="fas fa-key fa-fw mr-2 text-gray-400"></i>Redefinir Senha</a>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Sair</a>
                             </div>
                         </li>
 
@@ -195,6 +202,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+    <!-- Page level plugins -->
+    <!-- <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script> -->
+
+    <!-- Page level custom scripts -->
+    <!-- <script src="{% static 'js/demo/datatables-demo.js' %}"></script> -->
 
 </body>
 

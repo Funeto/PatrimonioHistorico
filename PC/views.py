@@ -1,7 +1,9 @@
-from rolepermissions.decorators import has_permission_decorator, has_role_decorator
+from rolepermissions.decorators import has_permission_decorator
 from rolepermissions.permissions import revoke_permission, grant_permission
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import is_valid_path, reverse, reverse_lazy
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import auth
 from django.db.models.aggregates import Count
 from django.http import HttpResponse
@@ -97,41 +99,49 @@ def adminU(request):
     pacote = {"users": users}  
     return render(request, "adminUser.html", pacote)
 
+@has_permission_decorator('conceder_permissoes')
 def revogarCP(request,id):
     user = Usuario.objects.get(pk=id)
     revoke_permission(user, 'cadastrar_patrimonio')
     return redirect("/adminUsuario")
 
+@has_permission_decorator('conceder_permissoes')
 def revogarEP(request,id):
     user = Usuario.objects.get(pk=id)
     revoke_permission(user, 'editar_patrimonio')
     return redirect("/adminUsuario")
 
+@has_permission_decorator('conceder_permissoes')
 def revogarDP(request,id):
     user = Usuario.objects.get(pk=id)
     revoke_permission(user, 'remover_patrimonio')
     return redirect("/adminUsuario")
 
+@has_permission_decorator('conceder_permissoes')
 def revogarDC(request,id):
     user = Usuario.objects.get(pk=id)
     revoke_permission(user, 'remover_comentario')
     return redirect("/adminUsuario")
 
+@has_permission_decorator('conceder_permissoes')
 def concederCP(request,id):
     user = Usuario.objects.get(pk=id)
     grant_permission(user, 'cadastrar_patrimonio')
     return redirect("/adminUsuario")
 
+@has_permission_decorator('conceder_permissoes')
 def concederEP(request,id):
     user = Usuario.objects.get(pk=id)
     grant_permission(user, 'editar_patrimonio')
     return redirect("/adminUsuario")
 
+@has_permission_decorator('conceder_permissoes')
 def concederDP(request,id):
     user = Usuario.objects.get(pk=id)
     grant_permission(user, 'remover_patrimonio')
     return redirect("/adminUsuario")
 
+@has_permission_decorator('conceder_permissoes')
 def concederDC(request,id):
     user = Usuario.objects.get(pk=id)
     grant_permission(user, 'remover_comentario')
@@ -197,3 +207,7 @@ def index(request):
 
 def handler404(request, exception):
     return redirect("/")
+
+class Redefinir(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('url_readP')
