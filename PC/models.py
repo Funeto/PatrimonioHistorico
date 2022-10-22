@@ -1,5 +1,4 @@
 from datetime import datetime
-from io import open_code
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 

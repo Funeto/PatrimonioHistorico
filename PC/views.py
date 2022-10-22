@@ -60,14 +60,6 @@ def showP(request, id):
     }
     return render(request,"showP.html", pacote)
 
-# def pesquisa(request):
-#     patrPesquisa = Patrimonio.objects.all()
-#     search = request.GET.get('search')
-#     if search:
-#         patrPesquisa = patrPesquisa.filter(nome__icontains=search)
-#     pacote = {"patrimonios": patrPesquisa}
-#     return render(request, "readP.html", pacote)
-
 def verP(request, id):
     # esse if limita o usuário logado mexer em um patrimônio que não é de sua cidade
     permissao = False
