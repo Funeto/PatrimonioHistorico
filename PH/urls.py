@@ -13,17 +13,18 @@ urlpatterns = [
     path('sair/', sair, name="url_sair"),
 
     path('createPatrimonio/', createP, name='url_createP'),
-    path('showPatrimonio/<int:id>', showP, name='url_showP'),
+    path('showPatrimonio/<int:id>/', showP, name='url_showP'),
     path('readPatrimonio/', readP, name='url_readP'),
-    path('deletePatrimonio/<int:id>', delP, name='url_delP'),
-    path('updatePatrimonio/<int:id>', updateP, name='url_updateP'),
+    path('Patrimonios/<int:id>/', verP, name='url_verP'),
+    path('deletePatrimonio/<int:id>/', delP, name='url_delP'),
+    path('updatePatrimonio/<int:id>/', updateP, name='url_updateP'),
 
     path('deleteComentario/<int:idp>/<int:idc>', delC, name='url_delC'),
 
     path('adminUsuario/', adminU, name='url_adminU'),
     path('createUsuario/',createU, name='url_createU'),
-    path('deleteUsuario/<int:id>', delU, name='url_delU'),
-    path('showUsuario/<int:id>', showU, name='url_showU'),
+    path('deleteUsuario/<int:id>/', delU, name='url_delU'),
+    path('showUsuario/<int:id>/', showU, name='url_showU'),
     path('redefinirSenha/', Redefinir.as_view(template_name='redefinir.html'), name='url_redefinir'),
 
     path('revogarCP/<int:id>', revogarCP, name='url_revCP'),

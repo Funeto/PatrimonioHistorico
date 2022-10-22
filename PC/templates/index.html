@@ -7,13 +7,13 @@
     <div class="container-md" data-aos="fade-in">
       <div class="row">
         <div class="col-12">
-          <div class="swiper sliderFeaturedPosts">
+          <div class="swiper sliderFeaturedPosts shadow">
             <div class="swiper-wrapper">
-              {% for i in patrimonios %}
+              {% for i in aleatorio %}
                 <div class="swiper-slide">
                   <a href="{% url 'url_showP' i.codigo %}" class="img-bg d-flex align-items-end" style="background-image: url({{ i.foto.url }})">
                     <div class="img-bg-inner">
-                      <h2>{{ i.nome }}</h2>
+                      <h2>{{ i.nome }} - {{ i.cidade }}</h2>
                       <p>{{ i.descricao }}</p>
                     </div>
                   </a>

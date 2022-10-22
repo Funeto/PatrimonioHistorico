@@ -14,7 +14,7 @@ class UserCreationForm(forms.UserCreationForm):
 class PatrimonioForm(django_forms.Form):
     nome = django_forms.CharField(max_length=100, label="Nome do patrimônio:")
     descricao = django_forms.CharField(widget=django_forms.Textarea, max_length=400, label="Descrição:")
-    cidade = django_forms.CharField(max_length=100, label="Cidade:")
+    # cidade = django_forms.CharField(max_length=100, label="Cidade:")
     bairro = django_forms.CharField(max_length=100, label="Bairro:")
     logradouro = django_forms.CharField(max_length=100, label="Logradouro:")
     numero = django_forms.CharField(max_length=16, label="Número:")

@@ -1,9 +1,16 @@
 from datetime import datetime
+from io import open_code
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-class Usuario(AbstractUser):
+class Cidade(models.Model):
     cidade = models.CharField(max_length=100)
+
+    def __str__(self):
+        return (self.cidade)
+
+class Usuario(AbstractUser):
+    cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE, null=True, blank=True)
     choices_tipo = (
         ('S', 'Auxiliar'),
         ('A', 'Administrador')
@@ -18,7 +25,7 @@ class Patrimonio(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     nome = models.CharField(max_length=100)
     descricao = models.TextField(max_length=400)
-    cidade = models.CharField(max_length=100)
+    cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
     bairro = models.CharField(max_length=100)
     logradouro = models.CharField(max_length=100)
     numero = models.CharField(max_length=16)

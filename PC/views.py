@@ -1,17 +1,27 @@
 from rolepermissions.decorators import has_permission_decorator
 from rolepermissions.permissions import revoke_permission, grant_permission
 from django.shortcuts import render, redirect
-from django.urls import is_valid_path, reverse, reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import auth
 from django.db.models.aggregates import Count
-from django.http import HttpResponse
 from datetime import datetime
 from PC.models import *
 from PC.forms import *
+import random
 
-# Create your views here.
+cida = Cidade.objects.all()
+
+# permissão para nenhum usuário logado mexer em um patrimônio que não é de sua cidade
+def permissaoM(request, obj):
+    if request.user.is_authenticated:
+        current_user = request.user
+        if current_user.tipo == "S" or current_user.tipo == "A":
+            if current_user.cidade == obj.cidade or current_user.cidade == None:
+                return True
+    else:
+        return False
 
 @has_permission_decorator('remover_comentario')
 def delC(request, idp, idc):
@@ -20,9 +30,13 @@ def delC(request, idp, idc):
     return redirect("/showPatrimonio/"+str(idp))
 
 def showP(request, id):
+    permissao = False
     patr = Patrimonio.objects.get(pk=id)
     qtdComent = Comentario.objects.filter(patrimonio = id). aggregate(decla_count=Count ('*'))
     comt = Comentario.objects.filter(patrimonio = id)
+    # esse if limita o usuário logado mexer em um patrimônio que não é de sua cidade
+    if permissaoM(request=request, obj=patr) == True:
+        permissao = True
     if request.method == "POST":
         form = ComentarioForm(request.POST, request.FILES)
         if form.is_valid():
@@ -36,18 +50,45 @@ def showP(request, id):
             return redirect("/showPatrimonio/"+str(id))
     else:
         form = ComentarioForm()
-    
     pacote = {
         "patrimonio": patr,
         "form": form,
         "qtdComent": qtdComent,
         "comentarios": comt,
+        "cidades": cida,
+        "permissao": permissao,
     }
     return render(request,"showP.html", pacote)
 
+# def pesquisa(request):
+#     patrPesquisa = Patrimonio.objects.all()
+#     search = request.GET.get('search')
+#     if search:
+#         patrPesquisa = patrPesquisa.filter(nome__icontains=search)
+#     pacote = {"patrimonios": patrPesquisa}
+#     return render(request, "readP.html", pacote)
+
+def verP(request, id):
+    # esse if limita o usuário logado mexer em um patrimônio que não é de sua cidade
+    permissao = False
+    if request.user.is_authenticated:
+        current_user = request.user
+        if current_user.tipo == "S" or current_user.tipo == "A":
+            if current_user.cidade == Cidade.objects.get(id = id) or current_user.cidade == None:
+                permissao = True
+    patr = Patrimonio.objects.filter(cidade = Cidade.objects.get(id = id))
+    pacote = {"patrimonios": patr, "cidades": cida, "permissao": permissao}
+    return render(request, "readP.html", pacote)
+
 def readP(request):
-    patr = Patrimonio.objects.all()
-    pacote = {"patrimonios": patr}  
+    permissao = True
+    if request.user.is_authenticated:
+        current_user = request.user
+        if current_user.tipo == "S" or current_user.tipo == "A":
+            patr = Patrimonio.objects.filter(cidade = current_user.cidade)
+    else:
+        return redirect("/")
+    pacote = {"patrimonios": patr, "cidades": cida, "permissao": permissao}
     return render(request, "readP.html", pacote)
 
 @has_permission_decorator('cadastrar_patrimonio')
@@ -58,11 +99,11 @@ def createP(request):
         form = PatrimonioForm(request.POST, request.FILES)
         if form.is_valid():
             obj = Patrimonio.objects.create(
-                usuario = Usuario(id = current_user.id),
+                usuario = current_user,
                 nome = form.cleaned_data.get("nome"),
                 foto = form.cleaned_data.get("foto"),
                 descricao = form.cleaned_data.get("descricao"),
-                cidade = form.cleaned_data.get("cidade"),
+                cidade = current_user.cidade,
                 bairro = form.cleaned_data.get("bairro"),
                 logradouro = form.cleaned_data.get("logradouro"),
                 numero = form.cleaned_data.get("numero"),
@@ -80,23 +121,28 @@ def createP(request):
 @has_permission_decorator('remover_patrimonio')
 def delP(request, id):
     patr = Patrimonio.objects.get(pk=id)
-    patr.delete()
+    if permissaoM(request=request, obj=patr) == True:
+        patr.delete()
     return redirect("/readPatrimonio")
 
 @has_permission_decorator('editar_patrimonio')
 def updateP(request, id):
     patr = Patrimonio.objects.get(pk=id)
-    form = PatrimonioModelForm(request.POST or None, request.FILES or None, instance=patr)
-    if form.is_valid():
-        form.save()
+    if permissaoM(request=request, obj=patr) == True:
+        form = PatrimonioModelForm(request.POST or None, request.FILES or None, instance=patr)
+        if form.is_valid():
+            form.save()
+            return redirect("/readPatrimonio")
+        pacote = {"form": form}
+        return render(request, "createP.html", pacote)
+    else:
         return redirect("/readPatrimonio")
-    pacote = {"form": form}
-    return render(request, "createP.html", pacote)
 
 @has_permission_decorator('conceder_permissoes')
 def adminU(request):
-    users = Usuario.objects.all()
-    pacote = {"users": users}  
+    current_user = request.user
+    users = Usuario.objects.filter(cidade=current_user.cidade, tipo='S')
+    pacote = {"users": users}
     return render(request, "adminUser.html", pacote)
 
 @has_permission_decorator('conceder_permissoes')
@@ -150,6 +196,7 @@ def concederDC(request,id):
 @has_permission_decorator('cadastrar_usuarios_aux')
 def createU(request):
     if request.method == "POST":
+        current_user = request.user
         first_name = request.POST.get('username')
         email = request.POST.get('email')
         senha = request.POST.get('senha')
@@ -161,7 +208,7 @@ def createU(request):
             return render(request, "createUser.html", mensagem)
         elif senha != senha_confirma:
             return redirect("/createUsuario")
-        user = Usuario.objects.create_user(username=email, email=email, password=senha, first_name=first_name, cidade="Caicó", tipo='S')
+        user = Usuario.objects.create_user(username=email, email=email, password=senha, first_name=first_name, cidade=current_user.cidade, tipo='S')
         user.save()
         return redirect("/adminUsuario")
 
@@ -178,10 +225,11 @@ def delU(request, id):
     return redirect("/adminUsuario")
 
 def login(request):
+    pacote = {"cidades": cida}
     if request.method == "GET":
         if request.user.is_authenticated:
             return redirect(reverse('url_readP'))
-        return render(request,'login.html')
+        return render(request,'login.html', pacote)
     elif request.method == "POST":
         login = request.POST.get('email')
         senha = request.POST.get('senha')
@@ -201,8 +249,15 @@ def sair(request):
     return redirect('/login')
     
 def index(request):
-    patr = Patrimonio.objects.all()
-    pacote = {"patrimonios": patr}
+    patrPesquisa = Patrimonio.objects.all()
+    itens = list(patrPesquisa)
+    random_items = random.sample(itens, 6)
+    search = request.GET.get('search')
+    pacote = {"patrimonios": patrPesquisa, "cidades": cida, "aleatorio": random_items}
+    if search:
+        patrPesquisa = patrPesquisa.filter(nome__icontains=search)
+        pacote = {"patrimonios": patrPesquisa, "cidades": cida, "aleatorio": random_items}
+        return render(request, "readP.html", pacote)
     return render(request, "index.html", pacote)
 
 def handler404(request, exception):

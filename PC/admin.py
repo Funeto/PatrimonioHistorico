@@ -15,3 +15,4 @@ class UsersAdmin(admin_auth_django.UserAdmin):
 
 admin.site.register(Patrimonio)
 admin.site.register(Comentario)
+admin.site.register(Cidade)

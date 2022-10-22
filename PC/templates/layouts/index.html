@@ -43,7 +43,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header d-flex align-items-center fixed-top">
+  <header id="header" class="header d-flex align-items-center fixed-top shadow">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="{% url 'url_index' %}" class="logo d-flex align-items-center">
@@ -52,7 +52,13 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="{% url 'url_readP' %}">Patrimônios em Caicó</a></li>
+          <li class="dropdown"><a href="#"><span>Patrimônios por cidade</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              {% for i in cidades %}
+              <li><a href="{% url 'url_verP' i.id %}">{{ i.cidade }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
           <li><a href="{% url 'url_login' %}">Login</a></li>
         </ul>
       </nav><!-- .navbar -->
@@ -64,9 +70,10 @@
 
         <!-- ======= Search Form ======= -->
         <div class="search-form-wrap js-search-form-wrap">
-          <form action="search-result.html" class="search-form">
+          <form action="{% url 'url_index' %}" class="search-form">
             <span class="icon bi-search"></span>
-            <input type="text" placeholder="Search" class="form-control">
+            <input type="text" placeholder="Search" name="search" class="form-control">
+            <button class="btn" type="submit"><span class="bi-x"></span></button>
             <button class="btn js-search-close"><span class="bi-x"></span></button>
           </form>
         </div><!-- End Search Form -->
@@ -77,6 +84,7 @@
 
   </header><!-- End Header -->
 
+  <!-- ======= Main ======= -->
   <main id="main">
     {% block conteudo %}
 
@@ -90,7 +98,7 @@
       <div class="container">
 
         <div class="row justify-content-between">
-          <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+          <div class="col-12 text-center text-md-start mb-3 mb-md-0">
             <div class="copyright">
               © Copyright <strong><span>Patrimônio Cultural</span></strong>. Todos os Direitos Reservados
             </div>
@@ -100,7 +108,7 @@
               <!-- You can delete the links only if you purchased the pro version. -->
               <!-- Licensing information: https://bootstrapmade.com/license/ -->
               <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-              Designado por <a href="http://www.arioliveira.com/">Ari Oliveira</a>
+              Designado pelo professor <b>Ari Oliveira</b>
             </div>
 
           </div>

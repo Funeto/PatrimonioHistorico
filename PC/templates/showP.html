@@ -35,7 +35,7 @@
                       </div>
                   </div>
               </section>
-              {%if user.is_authenticated %}
+              {%if user.is_authenticated and permissao == True %}
               <div class="text-right mr-5 mb-4">
                   <a href="{% url 'url_delP' patrimonio.codigo %}" class="btn bg-vermelho text-light btn-user col-sm-1 mr-auto" value="Excluir Perfil">Excluir</a>
                   <a href="{% url 'url_updateP' patrimonio.codigo %}" class="btn bg-marrom text-light btn-user col-sm-1 ml-auto" value="Editar">Editar</a>
