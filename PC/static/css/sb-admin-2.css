@@ -1867,9 +1867,9 @@ pre code {
 .form-control:focus {
   color: #6e707e;
   background-color: #fff;
-  border-color: #bac8f3;
+  border-color: #f6e2e8;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(255,228,225, 0.8);
 }
 
 .form-control::-webkit-input-placeholder {
@@ -2346,7 +2346,7 @@ textarea.form-control {
 
 .btn:focus, .btn.focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(246,226,232, 0.8);
 }
 
 .btn.disabled, .btn:disabled {
@@ -2365,20 +2365,19 @@ fieldset:disabled a.btn {
 .btn-primary {
   color: #fff;
   background-color: #4e73df;
-  border-color: #4e73df;
+  border-color: #f6e2e8;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #2e59d9;
-  border-color: #2653d4;
+  background-color: #ffe4e1;
+  border-color: #f6e2e8;
 }
 
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
-  background-color: #2e59d9;
-  border-color: #2653d4;
-  box-shadow: 0 0 0 0.2rem rgba(105, 136, 228, 0.5);
+  border-color: #f6e2e8;
+  box-shadow: 0 0 0 0.2rem rgba(246,226,232, 0.8);
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
@@ -3208,13 +3207,13 @@ input[type="button"].btn-block {
 .dropdown-item:hover, .dropdown-item:focus {
   color: #2e2f37;
   text-decoration: none;
-  background-color: #eaecf4;
+  background-color: #FFE4E1;
 }
 
 .dropdown-item.active, .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #4e73df;
+  background-color: #FFE4E1;
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {

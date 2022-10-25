@@ -23,10 +23,12 @@
                                   <span class="text-decoration-line h4"> Funcionamento: </span>
                                   <span class="lead display-5">{{ patrimonio.funcionamento }}</span>
                               </div>
+                              {%if patrimonio.datainauguracao != None %}
                               <div class="fs-0 mb-3">
                                   <span class="text-decoration-line h4"> Inauguração:</span>
                                   <span class="lead display-5">{{ patrimonio.datainauguracao }}</span>
                               </div>
+                              {%endif%}
                               <div class="fs-0 mb-3">
                                   <span class="h4 text-gray-550"> Curiosidades:</span>
                                   <p class="lead display-5">{{ patrimonio.curiosidades }}</p>
