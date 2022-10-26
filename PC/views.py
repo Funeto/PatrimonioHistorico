@@ -1,3 +1,4 @@
+from math import perm
 from rolepermissions.decorators import has_permission_decorator
 from rolepermissions.permissions import revoke_permission, grant_permission
 from django.shortcuts import render, redirect
@@ -26,8 +27,13 @@ def permissaoM(request, obj):
 @has_permission_decorator('remover_comentario')
 def delC(request, idp, idc):
     comt = Comentario.objects.get(pk=idc)
-    comt.delete()
+    objp = Patrimonio.objects.get(pk=idp)
+    permissao = False
+    if permissaoM(request=request, obj=objp) == True:
+        permissao = True
+        comt.delete()
     return redirect("/showPatrimonio/"+str(idp))
+    
 
 def showP(request, id):
     permissao = False

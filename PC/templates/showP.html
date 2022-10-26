@@ -95,7 +95,7 @@
                       
                             <ul class="list-inline d-sm-flex my-0">
                               {% load permission_tags %}
-                              {%if user|can:'remover_comentario'%}
+                              {%if user|can:'remover_comentario' and permissao == True %}
                               <li class="list-inline-item ml-auto">
                                 <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="{% url 'url_delC' patrimonio.codigo i.codigo %}">
                                   <i class="fa fa-trash text-laranja g-pos-rel g-top-1 g-mr-3"></i>
