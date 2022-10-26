@@ -1,8 +1,18 @@
 {% extends 'layouts/layout.html' %}
-{%block title%} PC | Novo Patrimônio {% endblock %}
+{%block title%} 
+    {%if update == True %}
+    PC | Editar Patrimônio 
+    {% else %}
+    PC | Novo Patrimônio
+    {% endif %}
+{% endblock %}
 {% block conteudo %}
 {% load crispy_forms_tags %}
-<h2 class="h2 mb-0 text-marrom">Novo Patrimônio</h2>
+    {%if update == True %}
+    <h2 class="h2 mb-0 text-marrom">Editar Patrimônio</h2>
+    {% else %}
+    <h2 class="h2 mb-0 text-marrom">Novo Patrimônio</h2>
+    {% endif %}
 <div class="card o-hidden border-0 shadow-lg my-3">
     <div class="card-body p-0">
         <div class="row justify-content-center">

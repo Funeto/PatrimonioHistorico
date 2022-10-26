@@ -125,13 +125,14 @@ def delP(request, id):
 
 @has_permission_decorator('editar_patrimonio')
 def updateP(request, id):
+    update =True
     patr = Patrimonio.objects.get(pk=id)
     if permissaoM(request=request, obj=patr) == True:
         form = PatrimonioModelForm(request.POST or None, request.FILES or None, instance=patr)
         if form.is_valid():
             form.save()
             return redirect("/readPatrimonio")
-        pacote = {"form": form}
+        pacote = {"form": form, "update":update}
         return render(request, "createP.html", pacote)
     else:
         return redirect("/readPatrimonio")
