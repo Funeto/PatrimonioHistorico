@@ -17,4 +17,5 @@ class Auxiliar(AbstractUserRole):
         'cadastrar_patrimonio': True,
         'editar_patrimonio': True,
         'remover_patrimonio': True,
+        'remover_comentario': False,
     }
