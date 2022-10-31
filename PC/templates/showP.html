@@ -17,7 +17,7 @@
                             <div class="mb-1 lead">{{ patrimonio.descricao }}</div>
                               <div class=" fs-0 mb-3 display-5">
                                   <span class="text-decoration-line h4"> Localização:</span>
-                                  <span class="lead display-5">{{ patrimonio.cidade }}, {{ patrimonio.bairro }}, {{ patrimonio.logradouro}} - {{ patrimonio.numero }}</span>
+                                  <span class="lead display-5">{{ patrimonio.cidade }}, {{ patrimonio.bairro }}, {{ patrimonio.logradouro}} {%if patrimonio.numero != '00' %} - {{ patrimonio.numero }} {%endif%}</span>
                               </div>
                               <div class="fs-0 mb-3">
                                   <span class="text-decoration-line h4"> Funcionamento: </span>
@@ -29,10 +29,12 @@
                                   <span class="lead display-5">{{ patrimonio.datainauguracao }}</span>
                               </div>
                               {%endif%}
+                              {%if patrimonio.curiosidades != '' %}
                               <div class="fs-0 mb-3">
-                                  <span class="h4 text-gray-550"> Curiosidades:</span>
+                                  <span class="text-decoration-line h4"> Curiosidades:</span>
                                   <p class="lead display-5">{{ patrimonio.curiosidades }}</p>
                               </div>
+                              {% endif %}
                           </div>
                       </div>
                   </div>

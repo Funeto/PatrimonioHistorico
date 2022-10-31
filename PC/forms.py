@@ -25,7 +25,7 @@ class PatrimonioForm(django_forms.Form):
 class PatrimonioModelForm(ModelForm):
     class Meta:
         model = Patrimonio
-        fields = ('nome', 'descricao', 'cidade', 'bairro', 'logradouro', 'numero', 'datainauguracao', 'funcionamento', 'curiosidades', 'foto')
+        fields = ('nome', 'descricao', 'bairro', 'logradouro', 'numero', 'datainauguracao', 'funcionamento', 'curiosidades', 'foto')
         labels = {
             "nome": "Nome do patrimônio:",
             "descricao": "Descrição:",
