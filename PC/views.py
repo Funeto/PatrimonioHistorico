@@ -40,6 +40,7 @@ def showP(request, id):
     patr = Patrimonio.objects.get(pk=id)
     qtdComent = Comentario.objects.filter(patrimonio = id). aggregate(decla_count=Count ('*'))
     comt = Comentario.objects.filter(patrimonio = id)
+    comt_ordenados = comt.order_by('-data')
     # esse if limita o usuário logado mexer em um patrimônio que não é de sua cidade
     if permissaoM(request=request, obj=patr) == True:
         permissao = True
@@ -60,7 +61,7 @@ def showP(request, id):
         "patrimonio": patr,
         "form": form,
         "qtdComent": qtdComent,
-        "comentarios": comt,
+        "comentarios": comt_ordenados,
         "cidades": cida,
         "permissao": permissao,
     }

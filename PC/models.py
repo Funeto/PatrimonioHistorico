@@ -27,11 +27,11 @@ class Patrimonio(models.Model):
     cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
     bairro = models.CharField(max_length=100)
     logradouro = models.CharField(max_length=100)
-    numero = models.CharField(max_length=16)
+    numero = models.CharField(max_length=16, null=True, blank=True)
     datainauguracao = models.DateField(null=True, blank=True)
     funcionamento = models.CharField(max_length=100)
     curiosidades = models.TextField(null=True, blank=True)
-    foto = models.ImageField(upload_to="img", null=True, blank=True)
+    foto = models.ImageField(upload_to="img")
 
     def __str__(self):
         return (self.nome)

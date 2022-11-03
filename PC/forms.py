@@ -3,6 +3,9 @@ from django.contrib.auth import forms
 from PC.models import Patrimonio, Usuario
 from django.forms import ModelForm
 
+class DateInput(django_forms.DateInput):
+    input_type = 'date'
+
 class UserChangeForm(forms.UserChangeForm):
     class Meta(forms.UserChangeForm.Meta):
         model = Usuario
@@ -16,11 +19,11 @@ class PatrimonioForm(django_forms.Form):
     descricao = django_forms.CharField(widget=django_forms.Textarea, max_length=400, label="Descrição:")
     bairro = django_forms.CharField(max_length=100, label="Bairro:")
     logradouro = django_forms.CharField(max_length=100, label="Logradouro:")
-    numero = django_forms.CharField(max_length=16, label="Número:")
-    datainauguracao = django_forms.DateField(label="Data de inauguração:", required=False)
+    numero = django_forms.CharField(max_length=16, label="Número:", required=False)
+    datainauguracao = django_forms.DateField(label="Data de inauguração:", required=False, widget=DateInput())
     funcionamento = django_forms.CharField(max_length=100, label="Horário de funcionamento:")
     curiosidades = django_forms.CharField(widget=django_forms.Textarea, label="Curiosidades:", required=False)
-    foto = django_forms.ImageField(label="Escolha uma foto:")
+    foto = django_forms.ImageField(label="Escolha uma foto:", required=True)
 
 class PatrimonioModelForm(ModelForm):
     class Meta:

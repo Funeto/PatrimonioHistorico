@@ -2,6 +2,13 @@
 {%block title%} PC | Redefinir Senha {% endblock %}
 {% block conteudo %}
 {% load crispy_forms_tags %}
+<head>
+    <style>
+        #hint_id_new_password1{
+            display: none;
+        }
+    </style>
+</head>
 <h2 class="h2 mb-0 text-marrom">Redefina sua senha</h2>
 <div class="card o-hidden border-0 shadow-lg my-3">
     <div class="card-body p-0">
